@@ -1,0 +1,12 @@
+{
+  "angular.enable-strict-mode-prompt": false,
+  "files.exclude": {
+      "**/*.tsx": true,
+      "**/*.json": false,
+      "**/.gitignore": true,
+      "**/.gitkeep": true,
+      "package-lock.json": true,
+      ".angular": true,
+      "node_modules": true
+    }
+}

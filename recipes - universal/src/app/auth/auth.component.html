@@ -1,0 +1,57 @@
+<ng-template appPlaceholder></ng-template>
+
+<div class="row">
+  <div class="col-xs-12 col-sm-4 col-md-offset-4">
+    <div *ngIf="isLoading" class="text-center">
+      <app-loading-spinner></app-loading-spinner>
+    </div>
+
+    <form #authForm="ngForm" (ngSubmit)="onSubmit(authForm)" *ngIf="!isLoading">
+
+      <div class="form-group" [ngClass]="{'has-error': email.invalid && email.touched}">
+        <label for="email" class="control-label">Email</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          class="form-control"
+          ngModel
+          required
+          email
+          #email="ngModel">
+
+          <p class="help-block" *ngIf="email.invalid && email.touched">
+            <span *ngIf="email.errors.required">This is required!</span>
+            <span *ngIf="email.errors.email">This is not a valid email!</span>
+          </p>
+      </div>
+      <div class="form-group" [ngClass]="{'has-error': password.invalid && password.touched}">
+        <label for="password" class="control-label">Password</label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          class="form-control"
+          ngModel
+          required
+          minlength="6"
+          #password="ngModel">
+
+          <p class="help-block" *ngIf="password.invalid && password.touched">
+            <span *ngIf="password.errors.required">This is required!</span>
+            <span *ngIf="password.errors.minlength">This must be at least 6 characters long!</span>
+          </p>
+      </div>
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary" [disabled]="authForm.invalid">
+          {{isLoginMode ? 'Login' : 'Sign Up'}}
+        </button>
+        &nbsp;
+        <button type="button" class="btn btn-default" (click)="onSwitchmode()">
+          Switch to {{isLoginMode ? 'Sign Up' : 'Login'}}
+        </button>
+      </div>
+
+    </form>
+  </div>
+</div>
